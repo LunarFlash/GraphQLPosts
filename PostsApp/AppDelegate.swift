@@ -5,15 +5,35 @@
 
 
 import UIKit
+import AWSAppSync
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var appSyncClient: AWSAppSyncClient?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Set up Amazon Cognito credentials
+//        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: CognitoIdentityRegion,
+//                                                                identityPoolId: CognitoIdentityPoolId)
+        // You can choose your database location, accessible by the SDK
+        let databaseURL = URL(fileURLWithPath:NSTemporaryDirectory()).appendingPathComponent(database_name)
+
+        do {
+            // initialize the AppSync client configuration configuration
+            let appSyncConfig = try AWSAppSyncClientConfiguration(url: AppSyncEndpointURL,
+                                                                  serviceRegion: AppSyncRegion,
+                                                                  apiKeyAuthProvider: APIKeyAuthProvider(),
+                                                                  databaseURL:databaseURL)
+            // initialize app sync client
+            appSyncClient = try AWSAppSyncClient(appSyncConfig: appSyncConfig)
+            // set id as the cache key for objects
+            appSyncClient?.apolloClient?.cacheKeyForObject = { $0["id"] }
+        } catch {
+            print("Error initializing appsync client. \(error)")
+        }
         return true
     }
 
