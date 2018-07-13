@@ -1,0 +1,30 @@
+PODS:
+  - AWSAppSync (2.6.17):
+    - AWSCore (~> 2.6.6)
+    - ReachabilitySwift (~> 4.0.0)
+    - SQLite.swift (= 0.11.4)
+  - AWSCore (2.6.23)
+  - ReachabilitySwift (4.0.0)
+  - SQLite.swift (0.11.4):
+    - SQLite.swift/standard (= 0.11.4)
+  - SQLite.swift/standard (0.11.4)
+
+DEPENDENCIES:
+  - AWSAppSync
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AWSAppSync
+    - AWSCore
+    - ReachabilitySwift
+    - SQLite.swift
+
+SPEC CHECKSUMS:
+  AWSAppSync: f55e249d70e483863cd6582d8d9b148436dda364
+  AWSCore: d56f69d7312e652e51c70f3b25e1687a5c2d06ca
+  ReachabilitySwift: e67b2cab4d5386053673d8a7421b5981e5f08259
+  SQLite.swift: 3e3bee21da701b5b9f87c4a672cb54f233505692
+
+PODFILE CHECKSUM: e8a1d35af0d9c21fb561b2ec236c241505e0d5e5
+
+COCOAPODS: 1.5.3
